@@ -26,35 +26,29 @@ module.exports = {
   },
 
   login: async (req, res) => {
-    if (req.session.attemptCount >= 5) {
-      req.session.attemptCount++
-      return res.status(403).send('Too many attempts')
-    }
 
-    const { usernameInput, passwordInput } = req.body
+    const { username, password } = req.body
     const db = req.app.get('db')
 
-    const existingUser = await db.get_user_by_username(usernameInput)
+    const existingUser = await db.get_user_by_username(username)
 
-    if (existingUser[0]) {
+    const user = existingUser[0]
+
+    if (!user) {
       return res.status(404).send('User does not exist')
     }
 
-    const authenticated = bcrypt.compareSync(password, existingUser[0].hash)
+    const authenticated = bcrypt.compareSync(password, user.password)
 
     if (!authenticated) {
-      if (!req.session.attemptCount) {
-        req.session.attemptCount = 1
-      } else {
-        req.session.attemptCount++
-      }
       return res.status(403).send('Incorrect password')
     }
 
-    delete existingUser[0].hash
+    req.session.user = {
+      username: user.username,
+      id: user.id
+    }
 
-    eq.session.user = existingUser[0]
-
-    res.status(200).send(req.session)
+    res.status(200).send(req.session.user)
   }
 }

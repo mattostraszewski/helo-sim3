@@ -29,6 +29,7 @@ massive({
 })
 
 app.post('/auth/register', authCtrl.register)
-// app.post('auth/login', authCtrl.login)
+// console.log(authCtrl.login)
+app.post('/auth/login', authCtrl.login)
 
 app.listen(SERVER_PORT, () => { console.log(`Prancing and Dancing on port ${SERVER_PORT}`) })

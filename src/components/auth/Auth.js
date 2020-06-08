@@ -27,26 +27,26 @@ export default class Auth extends Component {
     }
     axios
       .post('/auth/register', body)
-      .then((res) => {
-        this.setState({
-          usernameInput: res.data.usernameInput,
-          passwordInput: ''
-        })
+      .then(() => {
         this.props.history.push('/dashboard')
+      }).catch((err) => {
+        alert(err.response.data)
       })
   }
 
   login = (e) => {
     e.preventDefault();
     const { usernameInput, passwordInput } = this.state
+    const body = {
+      username: usernameInput,
+      password: passwordInput
+    }
     axios
-      .post('/auth/login', usernameInput, passwordInput)
-      .then((res) => {
-        this.setState({
-          usernameInput: res.data.usernameInput,
-          passwordInput: ''
-        })
+      .post('/auth/login', body)
+      .then(() => {
         this.props.history.push('/dashboard')
+      }).catch((err) => {
+        alert(err.response.data)
       })
   }
 
@@ -65,7 +65,7 @@ export default class Auth extends Component {
         </div>
 
         <div>
-          <button>Login</button>
+          <button onClick={(e) => this.login(e)}>Login</button>
           <button onClick={(e) => this.register(e)}>Register</button>
         </div>
       </div>
