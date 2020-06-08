@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { connect } from 'react-redux'
+import { setUser } from '../../ducks/actionCreators'
 
 
-export default class Auth extends Component {
+class Auth extends Component {
   constructor() {
     super();
 
     this.state = {
       usernameInput: '',
-      passwordInput: ''
+      passwordInput: '',
+      profilePicture: ''
     }
   }
 
@@ -20,14 +23,16 @@ export default class Auth extends Component {
 
   register = (e) => {
     e.preventDefault();
-    const { usernameInput, passwordInput } = this.state
+    const { usernameInput, passwordInput, profilePicture } = this.state
     const body = {
       username: usernameInput,
-      password: passwordInput
+      password: passwordInput,
+      profilePicture: profilePicture
     }
     axios
       .post('/auth/register', body)
-      .then(() => {
+      .then((res) => {
+        this.props.setUser(res.data.id, res.data.username, res.data.profilePicture)
         this.props.history.push('/dashboard')
       }).catch((err) => {
         alert(err.response.data)
@@ -36,14 +41,15 @@ export default class Auth extends Component {
 
   login = (e) => {
     e.preventDefault();
-    const { usernameInput, passwordInput } = this.state
+    const { usernameInput, passwordInput, profilePicture } = this.state
     const body = {
       username: usernameInput,
       password: passwordInput
     }
     axios
       .post('/auth/login', body)
-      .then(() => {
+      .then((res) => {
+        this.props.setUser(res.data.id, res.data.username, res.data.profilePicture)
         this.props.history.push('/dashboard')
       }).catch((err) => {
         alert(err.response.data)
@@ -74,3 +80,4 @@ export default class Auth extends Component {
     )
   }
 }
+export default connect(null, { setUser })(Auth)
