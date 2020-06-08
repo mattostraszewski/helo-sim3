@@ -15,6 +15,7 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }))
 
+
 massive({
   connectionString: CONNECTION_STRING,
   ssl: {
@@ -27,7 +28,7 @@ massive({
   console.log(error)
 })
 
-app.post('auth/register', authCtrl.register)
-app.post('auth/login', authCtrl.login)
+app.post('/auth/register', authCtrl.register)
+// app.post('auth/login', authCtrl.login)
 
 app.listen(SERVER_PORT, () => { console.log(`Prancing and Dancing on port ${SERVER_PORT}`) })

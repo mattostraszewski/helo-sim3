@@ -1,5 +1,4 @@
 insert into users (username, password)
-values ($1, $2);
+values ($1, $2)
 
--- select * from users
--- where username = $1;
+returning *

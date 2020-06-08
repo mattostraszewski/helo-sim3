@@ -21,8 +21,12 @@ export default class Auth extends Component {
   register = (e) => {
     e.preventDefault();
     const { usernameInput, passwordInput } = this.state
+    const body = {
+      username: usernameInput,
+      password: passwordInput
+    }
     axios
-      .post('/auth/register', usernameInput, passwordInput)
+      .post('/auth/register', body)
       .then((res) => {
         this.setState({
           usernameInput: res.data.usernameInput,
