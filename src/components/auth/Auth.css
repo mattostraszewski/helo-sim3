@@ -1,0 +1,66 @@
+.App {
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(99deg,#ff70a6,#ff9770 40%,#ffd670 73%,#e9ff70);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+
+.controlPanel {
+  width: 33vw;
+  height: 50vh;
+  background-image: linear-gradient(99deg,#ff70a6,#ff9770 40%,#ffd670 73%,#e9ff70);
+  box-shadow: 5px 5px 5px #000000 ;
+  border-radius: 5%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logoImg {
+  height: 114px;
+  width: 114px;
+  margin: 18px;
+}
+
+.appName {
+  height: 90px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 70px;
+  color: white;
+}
+
+.loginInputs{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.loginInfo{
+  margin-bottom: 18px;
+}
+
+.loginInfo label{
+  color: white;
+}
+
+.loginButtons {
+  display: flex;
+  width: 33vw;
+  justify-content: space-evenly;
+}
+
+.enterButtons {
+  background-color: gray;
+  color: white;
+  height: 35px;
+  width: 75px;
+}

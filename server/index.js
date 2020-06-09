@@ -3,6 +3,7 @@ const massive = require('massive'),
   express = require('express'),
   app = express(),
   authCtrl = require('./controllers/authController'),
+  postCtrl = require('./controllers/postsController'),
   session = require('express-session'),
   { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env
 
@@ -29,7 +30,7 @@ massive({
 })
 
 app.post('/auth/register', authCtrl.register)
-// console.log(authCtrl.login)
 app.post('/auth/login', authCtrl.login)
+app.get('/posts/:userId', postCtrl.getPosts)
 
 app.listen(SERVER_PORT, () => { console.log(`Prancing and Dancing on port ${SERVER_PORT}`) })
