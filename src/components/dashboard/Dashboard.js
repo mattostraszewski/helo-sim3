@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Post from '../post/Post'
+// import Post from '../post/Post'
 import { connect } from 'react-redux'
 import { getPosts } from '../../ducks/actionCreators'
 import axios from 'axios'
@@ -79,10 +79,12 @@ class Dashboard extends Component {
     // console.log(showMyPosts, 'showmyposts')
 
     const mappedPosts = posts.map((post) => {
-      console.log(post, 'mapped element')
+      // console.log(post, 'mapped element')
 
       return (<div>
         {post.title}
+        {post.username}
+        {post.profilePicture}
       </div>)
     })
 
@@ -121,10 +123,12 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log(state.posts, 'state props')
+  console.log(state, 'state props')
 
   return {
     userId: state.userId,
+    username: state.username,
+    profilePicture: state.profilePicture,
     posts: state.posts
   }
 }

@@ -3,7 +3,7 @@ import { SET_USER, GET_POSTS } from './constraints'
 const initialState = {
   username: '',
   userId: null,
-  profilePicture: "https://robohash.org/Matthew",
+  profilePicture: "",
   posts: []
 }
 

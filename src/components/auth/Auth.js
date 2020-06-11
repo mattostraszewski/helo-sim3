@@ -24,11 +24,11 @@ class Auth extends Component {
 
   register = (e) => {
     e.preventDefault();
-    const { username, password, profilePicture } = this.state
+    const { username, password } = this.state
     const body = {
       username: username,
       password: password,
-      profilePicture: profilePicture
+      // profilePicture: profilePicture
     }
     axios
       .post('/auth/register', body)

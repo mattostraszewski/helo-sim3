@@ -22,7 +22,7 @@ class Nav extends Component {
         <div className='fullNav'>
 
           <div className='displayUser' >
-            <img className='profilePicture' src={profilePicture} alt='profile picture' />
+            <img className='profilePicture' src={profilePicture} alt='profile' />
 
             {username}
           </div>
