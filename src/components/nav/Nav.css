@@ -1,0 +1,39 @@
+.imLost {
+  background-image: linear-gradient(99deg,#ff70a6,#ff9770 40%,#ffd670 73%,#e9ff70);
+  height: 100vh;
+  width: 10vw;
+}
+
+.fullNav {
+  height: 100vh;
+  width: 10vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.displayUser {
+
+}
+
+.profilePicture {
+  height: 70px;
+  width: 70px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.navButtons {
+  height: 40px;
+  width: 40px;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  background-color: transparent;
+}
+
+.homeImg, .newPostImg, .logoutImg {
+  height: 50px;
+  width: 50px;
+  /* background-image: linear-gradient(99deg,#ff70a6,#ff9770 40%,#ffd670 73%,#e9ff70); */
+}

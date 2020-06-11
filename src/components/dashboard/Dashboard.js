@@ -9,22 +9,39 @@ class Dashboard extends Component {
     super();
 
     this.state = {
-      searchInput: '',
-      showMyPosts: true,
-      posts: []
+      search: '',
+      showMyPosts: false
     }
+    this.getPosts = this.getPosts.bind(this)
   }
 
   componentDidMount = () => {
-    const { searchInput, showMyPosts } = this.state
-    const { userId } = this.props
-    this.props.getPosts(searchInput, showMyPosts, userId)
+    // const { search, showMyPosts } = this.state
+    // const { userId } = this.props
+    // this.props.getPosts(search, showMyPosts, userId)
+    axios
+      .get('/posts')
+      .then(res => {
+        this.props.getPosts(res.data)
+        // console.log(res.data, 'getAllPosts')
+      })
   }
 
-  getPosts = () => {
-    const { searchInput, showMyPosts } = this.state
+  componentDidUpdate = (prevProps, prevState) => {
+    const { showMyPosts, search } = this.state
+    if (prevState.showMyPosts !== showMyPosts || prevState.search !== search) {
+      this.getPosts()
+    }
+
+  }
+
+  getPosts() {
+    const { search, showMyPosts } = this.state
+    // console.log(this.props.userId, 'userId')
+    // console.log(search, 'search')
+    // console.log(showMyPosts, 'showmyposts')
     axios
-      .get(`/posts/${this.props.userId}?userposts=${showMyPosts}&search=${searchInput}`)
+      .get(`/posts/${this.props.userId}?userposts=${showMyPosts}&search=${search}`)
       .then(res => {
         this.props.getPosts(res.data)
       })
@@ -36,16 +53,10 @@ class Dashboard extends Component {
     })
   }
 
-  // handleCheckbox = e => {
-  //   this.setState({
-  //     userposts: e.target.checked
-  //   })
-  //   setTimeout(() => this.getPosts(), 0)
-  // }
-
   checkAddress = () => {
-    var chkBox = document.getElementById('checkAddress')
-    if (chkBox.checked) {
+    const { showMyPosts } = this.state
+    // console.log(showMyPosts)
+    if (!showMyPosts) {
       this.setState({
         showMyPosts: true
       })
@@ -56,33 +67,37 @@ class Dashboard extends Component {
     }
   }
 
+  // reset = () =
+
+
 
 
   render() {
-    const { searchInput, showMyPosts, posts } = this.state
-    // console.log(this.props)
+    const { search, showMyPosts } = this.state
+    const { posts } = this.props
+    // console.log(this.props, 'postssss')
+    // console.log(showMyPosts, 'showmyposts')
 
     const mappedPosts = posts.map((post) => {
-      return (<Post
-        key={post.id}
-        title={post.title}
-        author={post.author}
-        picture={post.profilePicture}
-      />)
+      console.log(post, 'mapped element')
+
+      return (<div>
+        {post.title}
+      </div>)
     })
 
-
+    // console.log(mappedPosts, 'mappedposts')
     return (
 
       <div>
 
         <div>
           <label>Search:</label>
-          <input placeholder='Search Posts' name='searchInput' value={searchInput} onChange={(e) => this.handleChange(e)} />
+          <input placeholder='Search Posts' name='search' value={search} onChange={(e) => this.handleChange(e)} />
         </div>
 
         <div>
-          <button onClick={(e) => this.search(e)} >Search</button>
+          {/* <button onClick={(e) => this.search(e)} >Search</button> */}
           <button onClick={(e) => this.reset(e)} >Reset</button>
         </div>
 
@@ -106,9 +121,23 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
+  // console.log(state.posts, 'state props')
+
   return {
-    userId: state.userId
+    userId: state.userId,
+    posts: state.posts
   }
 }
 
 export default connect(mapStateToProps, { getPosts })(Dashboard)
+
+
+
+
+ // return (<Post
+      //   key={post.id}
+      //   title={post.title}
+      //   author={post.author}
+      //   picture={post.profilePicture}
+      //   content={post.post_content}
+      // />)

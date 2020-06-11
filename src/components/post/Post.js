@@ -10,11 +10,11 @@ export default class Post extends Component {
   }
 
   render() {
-
+    const { title, author, picture, content } = this.props
     return (
 
       <div>
-        Post
+        I amn an idiot
       </div>
 
     )

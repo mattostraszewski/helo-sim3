@@ -10,8 +10,8 @@ class Auth extends Component {
     super();
 
     this.state = {
-      usernameInput: '',
-      passwordInput: '',
+      username: '',
+      password: '',
       profilePicture: ''
     }
   }
@@ -24,10 +24,10 @@ class Auth extends Component {
 
   register = (e) => {
     e.preventDefault();
-    const { usernameInput, passwordInput, profilePicture } = this.state
+    const { username, password, profilePicture } = this.state
     const body = {
-      username: usernameInput,
-      password: passwordInput,
+      username: username,
+      password: password,
       profilePicture: profilePicture
     }
     axios
@@ -42,10 +42,10 @@ class Auth extends Component {
 
   login = (e) => {
     e.preventDefault();
-    const { usernameInput, passwordInput } = this.state
+    const { username, password } = this.state
     const body = {
-      username: usernameInput,
-      password: passwordInput
+      username: username,
+      password: password
     }
     axios
       .post('/auth/login', body)
@@ -59,7 +59,7 @@ class Auth extends Component {
 
 
   render() {
-    const { usernameInput, passwordInput } = this.state
+    const { username, password } = this.state
     return (
       <div className='mainPage'>
 
@@ -78,12 +78,12 @@ class Auth extends Component {
 
             <div className='loginInfo'>
               <label>Username:</label>
-              <input name='usernameInput' value={usernameInput} onChange={(e) => this.handleChange(e)} placeholder='Enter Username' />
+              <input name='username' value={username} onChange={(e) => this.handleChange(e)} placeholder='Enter Username' />
             </div>
 
             <div className='loginInfo'>
               <label>Password:</label>
-              <input name='passwordInput' value={passwordInput} onChange={(e) => this.handleChange(e)} placeholder='Enter Password' />
+              <input name='password' value={password} onChange={(e) => this.handleChange(e)} placeholder='Enter Password' />
             </div>
 
           </div>

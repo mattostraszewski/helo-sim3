@@ -8,6 +8,7 @@ function App(props) {
 
   return (
     <div className="App">
+      {/* Nav is displayed on my other components because of this ternary */}
       {props.location.pathname === '/' ? null : <Nav />}
       {routes}
     </div>

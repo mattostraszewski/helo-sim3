@@ -32,5 +32,6 @@ massive({
 app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
 app.get('/posts/:userId', postCtrl.getPosts)
+app.get('/posts', postCtrl.getAllPosts)
 
 app.listen(SERVER_PORT, () => { console.log(`Prancing and Dancing on port ${SERVER_PORT}`) })
