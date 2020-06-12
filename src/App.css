@@ -1,6 +1,6 @@
 .App {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   background-color: rgb(223, 217, 217);
 }
 

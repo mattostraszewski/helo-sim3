@@ -2,6 +2,7 @@
 import { SET_USER, GET_POSTS } from './constraints'
 
 export function setUser(userId, username, profilePicture) {
+  console.log(profilePicture, 'profilepicture')
   return {
     type: SET_USER,
     payload: {

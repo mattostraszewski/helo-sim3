@@ -50,6 +50,7 @@ class Auth extends Component {
     axios
       .post('/auth/login', body)
       .then((res) => {
+        console.log(res, 'resss')
         this.props.setUser(res.data.id, res.data.username, res.data.profilePicture)
         this.props.history.push('/dashboard')
       }).catch((err) => {

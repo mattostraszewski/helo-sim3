@@ -78,13 +78,14 @@ class Dashboard extends Component {
     // console.log(this.props, 'postssss')
     // console.log(showMyPosts, 'showmyposts')
 
-    const mappedPosts = posts.map((post) => {
-      // console.log(post, 'mapped element')
+    const mappedPosts = posts.map((post, i) => {
+      console.log(post.profilePicture, 'mapped element')
 
-      return (<div>
+
+      return (<div key={i}>
         {post.title}
         {post.username}
-        {post.profilePicture}
+        {post.profilepicture}
       </div>)
     })
 
@@ -123,7 +124,7 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state, 'state props')
+  // console.log(state, 'state props')
 
   return {
     userId: state.userId,
