@@ -5,7 +5,6 @@ module.exports = {
     const db = req.app.get('db')
     const posts = await db.get_posts()
     const userPosts = await db.userposts(userId)
-    // console.log(db.get_posts, 'line7')
 
     console.log(userposts, search, 'line8')
 
@@ -28,9 +27,30 @@ module.exports = {
     }
   },
 
+
   getAllPosts: async (req, res) => {
     const db = req.app.get('db')
-    const allPosts = await db.get_all_posts()
+    const allPosts = await db.get_posts()
     return res.status(200).send(allPosts)
+  },
+
+
+  selectPost: async (req, res) => {
+    const { post_id } = req.params
+    const db = req.app.get('db')
+    const singlePost = await db.get_single_post(post_id)
+    return res.status(200).send(singlePost)
+  },
+
+
+  createPost: async (req, res) => {
+    console.log('hit')
+    const { userId } = req.params
+    const { title, image, content } = req.body
+    const db = req.app.get('db')
+
+    const newPost = await db.create_post(userId, title, content, image)
+    return res.status(200).send(newPost)
   }
+
 }

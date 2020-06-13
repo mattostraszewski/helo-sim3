@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 // import Post from '../post/Post'
 import { connect } from 'react-redux'
-import { getPosts } from '../../ducks/actionCreators'
+import { getPosts, singlePost } from '../../ducks/actionCreators'
 import axios from 'axios'
+import './Dashboard.css'
+import { Link } from 'react-router-dom'
 
 class Dashboard extends Component {
   constructor() {
@@ -16,14 +18,10 @@ class Dashboard extends Component {
   }
 
   componentDidMount = () => {
-    // const { search, showMyPosts } = this.state
-    // const { userId } = this.props
-    // this.props.getPosts(search, showMyPosts, userId)
     axios
       .get('/posts')
       .then(res => {
         this.props.getPosts(res.data)
-        // console.log(res.data, 'getAllPosts')
       })
   }
 
@@ -32,14 +30,10 @@ class Dashboard extends Component {
     if (prevState.showMyPosts !== showMyPosts || prevState.search !== search) {
       this.getPosts()
     }
-
   }
 
   getPosts() {
     const { search, showMyPosts } = this.state
-    // console.log(this.props.userId, 'userId')
-    // console.log(search, 'search')
-    // console.log(showMyPosts, 'showmyposts')
     axios
       .get(`/posts/${this.props.userId}?userposts=${showMyPosts}&search=${search}`)
       .then(res => {
@@ -55,7 +49,6 @@ class Dashboard extends Component {
 
   checkAddress = () => {
     const { showMyPosts } = this.state
-    // console.log(showMyPosts)
     if (!showMyPosts) {
       this.setState({
         showMyPosts: true
@@ -67,32 +60,30 @@ class Dashboard extends Component {
     }
   }
 
-  // reset = () =
-
-
+  reset = () => {
+    this.setState({
+      search: ''
+    })
+  }
 
 
   render() {
     const { search, showMyPosts } = this.state
     const { posts } = this.props
-    // console.log(this.props, 'postssss')
-    // console.log(showMyPosts, 'showmyposts')
 
-    const mappedPosts = posts.map((post, i) => {
-      console.log(post.profilePicture, 'mapped element')
-
-
-      return (<div key={i}>
-        {post.title}
-        {post.username}
-        {post.profilepicture}
-      </div>)
+    const mappedPosts = posts.map((post) => {
+      return (<Link className='postLink' to={`/post/${post.post_id}`} key={post.post_id} >
+        <div className='displayedPosts' >
+          <h2>{post.title}</h2>
+          <h5 className='usernameDisplay' >{post.username}</h5>
+          <img src={post.profilepicture} alt='prof' className='profPic' />
+        </div>
+      </Link >)
     })
 
-    // console.log(mappedPosts, 'mappedposts')
     return (
 
-      <div>
+      <div className='mainDash' >
 
         <div>
           <label>Search:</label>
@@ -100,8 +91,7 @@ class Dashboard extends Component {
         </div>
 
         <div>
-          {/* <button onClick={(e) => this.search(e)} >Search</button> */}
-          <button onClick={(e) => this.reset(e)} >Reset</button>
+          <button onClick={() => this.reset()} >Reset</button>
         </div>
 
         <div>
@@ -124,7 +114,6 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log(state, 'state props')
 
   return {
     userId: state.userId,
@@ -134,7 +123,7 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getPosts })(Dashboard)
+export default connect(mapStateToProps, { getPosts, singlePost })(Dashboard)
 
 
 

@@ -28,7 +28,6 @@ class Auth extends Component {
     const body = {
       username: username,
       password: password,
-      // profilePicture: profilePicture
     }
     axios
       .post('/auth/register', body)
@@ -50,7 +49,7 @@ class Auth extends Component {
     axios
       .post('/auth/login', body)
       .then((res) => {
-        console.log(res, 'resss')
+        // console.log(res.data.profilePicture, 'res data profile picture')
         this.props.setUser(res.data.id, res.data.username, res.data.profilePicture)
         this.props.history.push('/dashboard')
       }).catch((err) => {

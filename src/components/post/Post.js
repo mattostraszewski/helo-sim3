@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+import { connect } from 'react-redux'
+import { singlePost } from '../../ducks/actionCreators'
 
-export default class Post extends Component {
+class Post extends Component {
   constructor() {
     super();
 
@@ -9,14 +12,42 @@ export default class Post extends Component {
     }
   }
 
+  componentDidMount() {
+    axios
+      .get(`/post/${this.props.match.params.postid}`)
+      .then(res => {
+        this.props.singlePost(res.data)
+      })
+  }
+
   render() {
-    // const { title, author, picture, content } = this.props
+    const { post } = this.props
+    const mappedPost = post.map((e, i) => {
+      return (
+        <div key={i}>
+          {e.title}
+          {e.post_content}
+          {e.username}
+          {e.image}
+          <img src={e.profilepicture} alt='profile avatar' />
+          <button onClick={() => this.delete()}>Delete Post</button>
+        </div>
+      )
+    })
     return (
 
       <div>
-        I amn an idiot
+        {mappedPost}
       </div>
 
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    post: state.post
+  }
+}
+
+export default connect(mapStateToProps, { singlePost })(Post)
