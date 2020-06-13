@@ -4,7 +4,7 @@ module.exports = {
     const { userId } = req.params
     const db = req.app.get('db')
     const posts = await db.get_posts()
-    const userPosts = await db.userposts(userId)
+    const allUserPosts = await db.userposts(userId)
 
     console.log(userposts, search, 'line8')
 
@@ -23,7 +23,7 @@ module.exports = {
       return res.status(200).send(results)
     }
     else {
-      return res.status(200).send(userPosts)
+      return res.status(200).send(allUserPosts)
     }
   },
 
@@ -44,13 +44,22 @@ module.exports = {
 
 
   createPost: async (req, res) => {
-    console.log('hit')
     const { userId } = req.params
     const { title, image, content } = req.body
     const db = req.app.get('db')
 
     const newPost = await db.create_post(userId, title, content, image)
     return res.status(200).send(newPost)
+  },
+
+
+  deletePost: async (req, res) => {
+    console.log('hitttt')
+    const { post_id } = req.params
+    const db = req.app.get('db')
+
+    const updatedPost = await db.delete_post(post_id)
+    return res.status(200).send(updatedPost)
   }
 
 }

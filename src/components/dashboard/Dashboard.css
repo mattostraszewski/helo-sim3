@@ -1,16 +1,70 @@
 .mainDash {
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 90vw;
+  padding: 30px;
+}
+
+.postsNavBar {
+  display: flex;
+  height: 50px;
+  width: 67vw;
+  background-image: linear-gradient(99deg,#ff70a6,#ff9770 40%,#ffd670 73%,#e9ff70);
+  justify-content: center;
+  align-items: center;
+  border: olive 5px;
+  -webkit-box-shadow: 1px 2px 2px 2px rgb(190, 189, 189);
+  margin: 15px;
+
+}
+
+.searchBar {
+  width: 45vw;
+}
+
+.buttonHolder {
+  margin-right: 25px;
+}
+
+.reset {
+background-color: silver;
+color: black;
+}
+
+.postsContainer {
+  height: 85vh;
+  width: 65vw;
+  background-image: linear-gradient(99deg,#ff70a6,#ff9770 40%,#ffd670 73%,#e9ff70);
+  -webkit-box-shadow: 1px 2px 2px 2px rgb(190, 189, 189);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
 }
 
 .displayedPosts {
   display: flex;
+  height: 100px;
+  width: 62vw;
+  background-color: white;
   border: 5px;
-  margin: 20px;
+  margin: 15px;
+  -webkit-box-shadow: 1px 2px 2px 2px rgb(190, 189, 189);
+  text-decoration: none;
+}
+
+.postTitle {
+  color: black;
+  text-decoration: none;
+
 }
 
 .profPic {
 height: 50px;
 width: 50px;
-background-color: white;
+background-color: gray;
 border-radius: 50%;
 }

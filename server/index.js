@@ -35,5 +35,6 @@ app.post('/new/:userId', postCtrl.createPost)
 app.get('/posts/:userId', postCtrl.getPosts)
 app.get('/posts', postCtrl.getAllPosts)
 app.get('/post/:post_id', postCtrl.selectPost)
+app.delete('/post/delete/:post_id', postCtrl.deletePost)
 
 app.listen(SERVER_PORT, () => { console.log(`Prancing and Dancing on port ${SERVER_PORT}`) })

@@ -9,11 +9,18 @@
   width: 10vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
+  align-items: center;
 }
 
 .displayUser {
+display: flex;
+flex-direction: column;
+margin: 20px;
+}
 
+.userr {
+color: white;
 }
 
 .profilePicture {
@@ -21,6 +28,15 @@
   width: 70px;
   background-color: white;
   border-radius: 50%;
+}
+
+.dashNav, .postNav {
+  margin-top: 55px;
+  margin-bottom: 55px;
+}
+
+.logoutNav {
+  margin-top: 360px;
 }
 
 .navButtons {

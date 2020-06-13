@@ -24,7 +24,7 @@ class Nav extends Component {
           <div className='displayUser' >
             <img className='profilePicture' src={profilePicture} alt='profile' />
 
-            {username}
+            <h4 className='userr'>{username}</h4>
           </div>
 
           <div className='navButtonController' >

@@ -74,7 +74,7 @@ class Dashboard extends Component {
     const mappedPosts = posts.map((post) => {
       return (<Link className='postLink' to={`/post/${post.post_id}`} key={post.post_id} >
         <div className='displayedPosts' >
-          <h2>{post.title}</h2>
+          <h2 className='postTitle'>{post.title}</h2>
           <h5 className='usernameDisplay' >{post.username}</h5>
           <img src={post.profilepicture} alt='prof' className='profPic' />
         </div>
@@ -85,25 +85,27 @@ class Dashboard extends Component {
 
       <div className='mainDash' >
 
-        <div>
-          <label>Search:</label>
-          <input placeholder='Search Posts' name='search' value={search} onChange={(e) => this.handleChange(e)} />
+        <div className='postsNavBar'>
+          <div className='searchInput'>
+            {/* <label>Search:</label> */}
+            <input className='searchBar' placeholder='Search Posts' name='search' value={search} onChange={(e) => this.handleChange(e)} />
+          </div>
+
+          <div className='buttonHolder'>
+            <button className='reset' onClick={() => this.reset()} >Reset</button>
+          </div>
+
+          <div className='checkBox'>
+            <label>My Posts</label>
+            <input type='checkbox'
+              name='showMyPosts'
+              id='checkAddress'
+              checked={showMyPosts}
+              onChange={this.checkAddress} />
+          </div>
         </div>
 
-        <div>
-          <button onClick={() => this.reset()} >Reset</button>
-        </div>
-
-        <div>
-          <label>My Posts</label>
-          <input type='checkbox'
-            name='showMyPosts'
-            id='checkAddress'
-            checked={showMyPosts}
-            onChange={this.checkAddress} />
-        </div>
-
-        <div>
+        <div className='postsContainer'>
           {mappedPosts}
         </div>
 
