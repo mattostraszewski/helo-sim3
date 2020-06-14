@@ -1,2 +1,3 @@
 select * from posts p
-where author_id != $1 and p.title like '%' || $2 || '%';
+join users on p.author_id = users.id
+where  p.title like '%' || $1 || '%';

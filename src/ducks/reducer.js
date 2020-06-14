@@ -5,7 +5,7 @@ const initialState = {
   userId: null,
   profilePicture: "",
   posts: [],
-  post: []
+  post: {}
 }
 
 export default function reducer(state = initialState, action) {

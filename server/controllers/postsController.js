@@ -14,12 +14,12 @@ module.exports = {
     }
     else if (userposts == 'false' && search) {
       console.log('hit', 'line16')
-      const results = await db.contains_search_and_isnt_author(userId, search)
+      const results = await db.contains_search_and_isnt_author(search)
       return res.status(200).send(results)
     }
     else if (userposts && search) {
       console.log('hit', 'line21')
-      const results = await db.title_contains_search(search)
+      const results = await db.title_contains_search(search, userId)
       return res.status(200).send(results)
     }
     else {
@@ -36,7 +36,9 @@ module.exports = {
 
 
   selectPost: async (req, res) => {
+    // console.log('hit')
     const { post_id } = req.params
+    // console.log(post_id, 'post_id from params')
     const db = req.app.get('db')
     const singlePost = await db.get_single_post(post_id)
     return res.status(200).send(singlePost)

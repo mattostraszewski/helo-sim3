@@ -72,11 +72,13 @@ class Dashboard extends Component {
     const { posts } = this.props
 
     const mappedPosts = posts.map((post) => {
-      return (<Link className='postLink' to={`/post/${post.post_id}`} key={post.post_id} >
+      return (<Link className='postLink' to={`/post/${post.post_id}`} key={post.post_id} style={{ textDecoration: 'none' }}>
         <div className='displayedPosts' >
           <h2 className='postTitle'>{post.title}</h2>
-          <h5 className='usernameDisplay' >{post.username}</h5>
-          <img src={post.profilepicture} alt='prof' className='profPic' />
+          <div className='userInfo'>
+            <h5 className='usernameDisplay' >By: {post.username}</h5>
+            <img src={post.profilepicture} alt='prof' className='profPic' />
+          </div>
         </div>
       </Link >)
     })

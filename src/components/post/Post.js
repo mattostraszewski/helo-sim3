@@ -4,25 +4,27 @@ import { connect } from 'react-redux'
 import { singlePost, getPosts } from '../../ducks/actionCreators'
 
 class Post extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
 
     }
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
+    console.log(this.props.match.params, 'hit')
     axios
-      .get(`/post/${this.props.match.params.post_id}`)
+      .get(`/post/${this.props.match.params.postid}`)
       .then(res => {
-        this.props.singlePost(res.data)
+        console.log(res.data)
+        this.props.singlePost(res.data[0])
       })
   }
 
   delete = () => {
     const { post } = this.props
-    console.log(post.post_id, 'post id')
+    console.log(post, 'post id')
     axios
       .delete(`/post/delete/${post.post_id}`)
       .then(res => {
@@ -33,22 +35,11 @@ class Post extends Component {
 
   render() {
     const { post } = this.props
-    console.log(post, 'post')
-    const mappedPost = post.map((e, i) => {
-      return (
-        <div key={i}>
-          {e.title}
-          {e.post_content}
-          {e.username}
-          {e.image}
-          <img src={e.profilepicture} alt='profile avatar' />
-        </div>
-      )
-    })
+
     return (
 
       <div>
-        {mappedPost}
+        {post.title}
         <div>
           <button onClick={() => this.delete()}>Delete Post</button>
         </div>
