@@ -68,10 +68,11 @@ color: black;
 .userInfo {
   display: flex;
   margin: 20px;
+  align-items: flex-end;
 }
 
 .usernameDisplay {
-  margin: 10px;
+  margin: 15px;
 }
 
 .profPic {

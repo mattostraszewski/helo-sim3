@@ -53,13 +53,14 @@ class Auth extends Component {
         this.props.setUser(res.data.id, res.data.username, res.data.profilePicture)
         this.props.history.push('/dashboard')
       }).catch((err) => {
-        alert(err.response)
+        alert(err.response.data)
       })
   }
 
 
   render() {
     const { username, password } = this.state
+
     return (
       <div className='mainPage'>
 

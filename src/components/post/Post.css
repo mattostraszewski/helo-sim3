@@ -1,0 +1,82 @@
+.poistioning {
+  width: 90vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.postForm {
+  height: 55vh;
+  width: 67vw;
+  background-image: linear-gradient(99deg,#ff70a6,#ff9770 40%,#ffd670 73%,#e9ff70);
+  -webkit-box-shadow: 1px 2px 2px 2px rgb(190, 189, 189);
+  margin: 22px;
+}
+
+.postDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  height: 10vh;
+}
+
+.userHolder {
+  display: flex;
+  align-items: flex-end;
+}
+.roboPic {
+  margin: 25px;
+}
+
+.roboPic {
+  height: 50px;
+  width: 50px;
+  background-color: gray;
+  border-radius: 50%;
+}
+
+.contentHolder {
+  display: flex;
+  justify-content: space-around;
+  height: 250px;
+  width: 67vw;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.postImageHolder {
+  height: 250px;
+  width: 320px;
+  
+}
+
+.postImage {
+  height: 250px;
+  width: 320px;
+}
+
+.postBodyHolder {
+  height: 250px;
+  width: 320px;
+}
+
+.postBody {
+  margin: 0px;
+}
+
+.deleteHolder {
+  height: 30px;
+  width: 67vw;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.deleteButtonPlaceHolder {
+  margin: 20px;
+  height: 30px;
+  background-color: black;
+  color: white;
+}
