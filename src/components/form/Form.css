@@ -1,0 +1,97 @@
+.position {
+  width: 90vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.newPostCard {
+  height: 85vh;
+  width: 67vw;
+  background-image: linear-gradient(99deg,#ff70a6,#ff9770 40%,#ffd670 73%,#e9ff70);
+  -webkit-box-shadow: 1px 2px 2px 2px rgb(190, 189, 189);
+  margin: 22px;
+}
+
+.newPostH1 {
+  width: 67vw;
+  height: 10vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+h1 {
+  margin: 25px;
+}
+
+.titleInput, .newPostInput {
+  display: flex;
+  flex-direction: column;
+  width: 67vw;
+  height: 8vh;
+  margin-left: 45px;
+  margin-right: 45px;
+  margin-top: 12px;
+}
+
+.newPostContent {
+  display: flex;
+  flex-direction: column;
+  width: 67vw;
+  height: 15vh;
+  margin-left: 45px;
+  margin-right: 45px;
+  margin-bottom: 12px;
+}
+
+.titleInput, label {
+  font-size: 20px;
+  font: bold;
+}
+
+.title, .imagee {
+  width: 60vw;
+}
+
+.content {
+  width: 60vw;
+  height: 15vh;
+}
+
+.imageHolder {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 67vw;
+height: 30vh;
+margin-bottom: 20px;
+}
+
+.newPostImages {
+  width: 33vw;
+  height: 30vh;
+}
+
+
+.notSure {
+  height: 7vw;
+  width: 67vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.buttonCreator {
+ width: 60vw;
+ display: flex;
+ justify-content: flex-end;
+}
+
+.createButton {
+  height: 30px;
+  background-color: black;
+  color: white;
+}
+

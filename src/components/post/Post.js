@@ -13,18 +13,15 @@ class Post extends Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props.match.params, 'hit')
     axios
       .get(`/post/${this.props.match.params.postid}`)
       .then(res => {
-        console.log(res.data)
         this.props.singlePost(res.data[0])
       })
   }
 
   delete = () => {
     const { post } = this.props
-    console.log(post, 'post id')
     axios
       .delete(`/post/delete/${post.post_id}`)
       .then(res => {
@@ -34,14 +31,14 @@ class Post extends Component {
   }
 
   render() {
-    const { post } = this.props
-
+    const { post, userId } = this.props
+    // console.log(post, 'posttttt')
     return (
 
       <div>
         {post.title}
         <div>
-          <button onClick={() => this.delete()}>Delete Post</button>
+          {userId === post.author_id ? <button onClick={() => this.delete()}>Delete Post</button> : <div>Can Not Delete Post's That Aren't Yours.</div>}
         </div>
       </div>
 
@@ -50,7 +47,6 @@ class Post extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state.post, 'state post')
   return {
     post: state.post,
     userId: state.userId

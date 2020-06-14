@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios';
 import { createPost } from '../../ducks/actionCreators'
+import './Form.css'
 
 class Form extends Component {
   constructor() {
@@ -38,10 +39,10 @@ class Form extends Component {
   }
 
   render() {
-
+    const { image } = this.state
     return (
 
-      <div>
+      <div className='position'>
         <div className='newPostCard'>
           <div className='newPostH1'>
             <h1>New Post</h1>
@@ -49,25 +50,28 @@ class Form extends Component {
 
           <div className='titleInput'>
             <label>Title:</label>
-            <input name='title' onChange={(e) => this.handleChanger(e)} />
+            <input className='title' name='title' onChange={(e) => this.handleChanger(e)} />
           </div>
 
           <div className='imageHolder'>
-            {/* <img src={} alt='post' className='newPostImg' /> */}
+            {!image ? <img src='https://tc-itservices.com/wp-content/uploads/2018/07/lenovo-camera1-300x225.png' alt='post' className='newPostImages' />
+              : <img src={image} alt='post' className='newPostImages' />}
           </div>
 
           <div className='newPostInput'>
             <label>Image URL:</label>
-            <input name='image' onChange={(e) => this.handleChanger(e)} />
+            <input className='imagee' name='image' onChange={(e) => this.handleChanger(e)} />
           </div>
 
           <div className='newPostContent'>
             <label>Content:</label>
-            <input name='content' onChange={(e) => this.handleChanger(e)} />
+            <input className='content' name='content' onChange={(e) => this.handleChanger(e)} />
           </div>
 
-          <div className=''>
-            <button onClick={() => this.createPost()}>Post</button>
+          <div className='notSure' >
+            <div className='buttonCreator'>
+              <button onClick={() => this.createPost()} className='createButton'>Post</button>
+            </div>
           </div>
         </div>
       </div>
